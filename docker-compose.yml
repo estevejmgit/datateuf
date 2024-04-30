@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  php:
+    build: .
+    volumes:
+      - ./symfony:/var/www/symfony
+      - ./config/php:/usr/local/etc/php-fpm
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./symfony/public:/var/www/symfony/public
+      - ./config/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./logs/nginx:/var/log/nginx
+    ports:
+      - "8000:80"
+    depends_on:
+      - php
+  db:
+    image: mariadb:10.11
+    environment:
+      - MYSQL_DATABASE=symfony
+      - MYSQL_USER=symfony_user
+      - MYSQL_PASSWORD=symfony_pass
+      - MYSQL_ROOT_PASSWORD=root_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db_data:/var/lib/mysql
+
+volumes:
+  db_data:
