@@ -20,8 +20,9 @@ WORKDIR /var/www/symfony
 COPY . /var/www/symfony
 
 # Modifier les permissions du répertoire var
-RUN mkdir var
-RUN chown -R www-data:www-data /var/www/symfony/var
+RUN mkdir -p var/cache
+RUN mkdir var/log
+RUN chown -R www-data:www-data /var/www/symfony
 RUN chmod -R 755 /var/www/symfony/var
 
 # Exposer le port 9000 pour le service PHP-FPM
