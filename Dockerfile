@@ -16,5 +16,13 @@ RUN apt-get update && apt-get install -y \
 # Définir le répertoire de travail dans le conteneur
 WORKDIR /var/www/symfony
 
+# Copier le code source
+COPY . /var/www/symfony
+
+# Modifier les permissions du répertoire var
+RUN mkdir var
+RUN chown -R www-data:www-data /var/www/symfony/var
+RUN chmod -R 755 /var/www/symfony/var
+
 # Exposer le port 9000 pour le service PHP-FPM
 # EXPOSE 9000
