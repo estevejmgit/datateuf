@@ -1,4 +1,4 @@
-# requirements
+# Requirements
 - Docker & Docker compose installed 
 - Git installed
 
