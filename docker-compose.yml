@@ -1,11 +1,15 @@
 version: '3.8'
 services:
   php:
-    user: "www-data"
     build: .
     volumes:
       - ./symfony:/var/www/symfony
       - ./config/php:/usr/local/etc/php-fpm
+    command: >
+      sh -c "mkdir -p /var/www/symfony/var /var/www/symfony/var/cache /var/www/symfony/var/log &&
+             chown -R www-data:www-data /var/www/symfony &&
+             chmod -R 755 /var/www/symfony/var &&
+             php-fpm"      
   nginx:
     image: nginx:latest
     volumes:
