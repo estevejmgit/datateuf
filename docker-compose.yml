@@ -3,11 +3,12 @@ services:
   php:
     build: .
     volumes:
+      - symfony_var:/var/www/symfony/var
       - ./symfony:/var/www/symfony
       - ./config/php:/usr/local/etc/php-fpm
     command: >
       sh -c "mkdir -p /var/www/symfony/var /var/www/symfony/var/cache /var/www/symfony/var/log &&
-             chown -R www-data:www-data /var/www/symfony &&
+             chown -R www-data:www-data /var/www/symfony/var &&
              chmod -R 755 /var/www/symfony/var &&
              php-fpm"      
   nginx:
@@ -34,3 +35,4 @@ services:
 
 volumes:
   db_data:
+  symfony_var:
