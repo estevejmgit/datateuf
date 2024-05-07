@@ -10,19 +10,5 @@ RUN apt-get update && apt-get install -y \
         pdo pdo_mysql zip \
     && apt-get clean
 
-# Installer Composer
-# COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
 # Définir le répertoire de travail dans le conteneur
 WORKDIR /var/www/symfony
-
-# Copier le code source
-# COPY . /var/www/symfony
-
-# Modifier les permissions du répertoire var
-# RUN mkdir var var/cache var/log
-# RUN chown -R www-data:www-data /var/www/symfony
-# RUN chmod -R 755 /var/www/symfony/var
-
-# Exposer le port 9000 pour le service PHP-FPM
-# EXPOSE 9000
