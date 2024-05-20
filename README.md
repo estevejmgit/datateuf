@@ -21,5 +21,6 @@ $ docker compose build
 $ docker compose up -d
 
   
-# App should be running
-- http://localhost:8000
+# Local Urls
+- http://localhost:8000 [web home page]
+- http://localhost:8081 [phpmyadmin]
